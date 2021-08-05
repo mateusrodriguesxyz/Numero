@@ -4,3 +4,5 @@ os: osx
 xcode_project: Numero.xcodeproj
 xcode_scheme: Numero
 xcode_destination: platform=iOS Simulator,OS=14.5,name=iPhone 8
+after_script:
+  - bash ./telegram_notification.sh
