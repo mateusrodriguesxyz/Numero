@@ -18,6 +18,8 @@ jobs:
     - name: Telegram Notification
       run: bash ./telegram_notification2.sh
       env:
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
         ACTION_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
         TEST_OUTCOME: ${{ steps.unit-test.outcome }}
         
