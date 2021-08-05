@@ -13,7 +13,7 @@ jobs:
       
     - name: Run UnitTests
       id: unit-test
-      run: xcodebuild test -project 'Numero.xcodeproj' -scheme 'Numero' -destination 'platform=iOS Simulator,OS=14.4,name=iPhone 8'
+      run: xcodebuild test -project 'Numero.xcodeproj' -scheme 'Numero' -destination 'platform=iOS Simulator,OS=14.4,name=iPhone 8' | xcpretty
       
     - name: Telegram Notification
       run: bash ./telegram_notification2.sh
