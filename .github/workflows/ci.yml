@@ -1,6 +1,8 @@
-name: Swift
+name: CI
 
-on: push
+on: 
+  push
+  workflow_dispatch
 
 jobs:
   unit_tests:
