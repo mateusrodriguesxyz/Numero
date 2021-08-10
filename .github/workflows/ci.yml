@@ -13,11 +13,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       
-    - name: Run Script
+    - name: Get Line Rate
+      id: get_line_rate
       run: swift hello.swift
       
     - name: Check coverage tolerance
-      if: ${{ 0.8 < 0.9 }}
+      if: ${{ steps.get_line_rate.outputs.lineRate < 0.9 }}
       uses: actions/github-script@v3
       with:
         script: |
