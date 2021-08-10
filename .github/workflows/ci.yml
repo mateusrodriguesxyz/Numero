@@ -24,9 +24,13 @@ jobs:
     - name: Check coverage tolerance
       if: ${{ steps.get_line_rate.outputs.lineRate < 0.9 }}
       uses: actions/github-script@v3
+      env:
+          COVERAGE: ${{ steps.get_line_rate.outputs.lineRate }}
       with:
         script: |
             core.setFailed('Coverage test below tolerance')
+            
+    - run: echo "Current Coverage is $COVERAGE"
       
 #     - name: Telegram Notification
 #       run: bash ./telegram_notification2.sh
