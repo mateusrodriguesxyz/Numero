@@ -21,17 +21,17 @@ jobs:
       id: get_line_rate
       run: swift coverage.swift
       
+    - name: Code Coverage
+      run: echo "Current Coverage is $COVERAGE"
+      env:
+          COVERAGE: ${{ steps.get_line_rate.outputs.lineRate }}
+      
     - name: Check coverage tolerance
       if: ${{ steps.get_line_rate.outputs.lineRate < 0.9 }}
       uses: actions/github-script@v3
-      env:
-          COVERAGE: ${{ steps.get_line_rate.outputs.lineRate }}
       with:
         script: |
-            core.setFailed('Coverage test below tolerance')
-     
-    - name: Check coverage tolerance
-      run: echo "Current Coverage is $COVERAGE"
+            core.setFailed('Coverage test below tolerance (0.9)')
       
 #     - name: Telegram Notification
 #       run: bash ./telegram_notification2.sh
