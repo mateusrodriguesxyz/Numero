@@ -29,8 +29,9 @@ jobs:
       with:
         script: |
             core.setFailed('Coverage test below tolerance')
-            
-    - run: echo "Current Coverage is $COVERAGE"
+     
+    - name: Check coverage tolerance
+      run: echo "Current Coverage is $COVERAGE"
       
 #     - name: Telegram Notification
 #       run: bash ./telegram_notification2.sh
