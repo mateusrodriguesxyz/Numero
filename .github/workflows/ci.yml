@@ -13,6 +13,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       
+    - name: Run Script
+      run: swift hello.swift
+      
     - name: Check coverage tolerance
       if: ${{ 0.8 < 0.9 }}
       uses: actions/github-script@v3
