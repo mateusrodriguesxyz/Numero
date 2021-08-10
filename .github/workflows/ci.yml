@@ -12,21 +12,21 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-            
-#     - name: Check coverage tolerance
-#       if: ${{ steps.get_line_rate.outputs.lineRate < 0.9 }}
-#       uses: actions/github-script@v3
-#       with:
-#         script: |
-#             core.setFailed('Coverage test below tolerance')
-      
+                  
     - name: Run UnitTests
       id: unit-test
       run: xcodebuild test -project 'Numero.xcodeproj' -scheme 'Numero' -derivedDataPath Build/ -destination 'platform=iOS Simulator,OS=14.4,name=iPhone 8' -enableCodeCoverage YES | xcpretty
       
     - name: Get Line Rate
       id: get_line_rate
-      run: swift hello.swift
+      run: swift coverage.swift
+      
+    - name: Check coverage tolerance
+      if: ${{ steps.get_line_rate.outputs.lineRate < 0.9 }}
+      uses: actions/github-script@v3
+      with:
+        script: |
+            core.setFailed('Coverage test below tolerance')
       
 #     - name: Telegram Notification
 #       run: bash ./telegram_notification2.sh
