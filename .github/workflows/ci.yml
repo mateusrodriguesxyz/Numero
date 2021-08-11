@@ -3,6 +3,11 @@ name: CI
 on: 
   push:
   workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
 
 jobs:
   unit_tests:
